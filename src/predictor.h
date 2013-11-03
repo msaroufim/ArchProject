@@ -1,6 +1,14 @@
 #ifndef PREDICTOR_H
 #define PREDICTOR_H
 
+#define LLHT 4096           //Total number of entries of LHT
+#define LGHR 31             //GHR length              
+#define SATBITS 2           //number of saturation bits
+
+int LHT[LLHT];            //Local history table.
+int GHT[LGHR];            //Global history table
+int Bias[SATBITS];        //Bias 
+
 /*
   Define all your tables and their sizes here.
   All tables must be statically-sized.
