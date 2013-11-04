@@ -1,5 +1,10 @@
-Branch Predictor Project
+# Branch Predictor Project
 ----------------------------------------------------------------------
+Implement several branch predictions algorithms and compare their performance on trace training data
+* naive always taken
+* naive never taken
+* gshare
+* gshare with bias
 
 Instructions:
 
