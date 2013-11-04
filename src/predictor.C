@@ -1,17 +1,14 @@
-// A very stupid predictor.  It will always predict not taken.
 #include <math.h>
 
 #define HBSIZE 256
+#define PHTSIZE 65536 //2^HBSIZE - 1
+
+extern unsigned int PHT[PHTSIZE]; 
+extern unsigned int HB[HBSIZE];
 
 void init_predictor () 
+
 {
-
-//history buffer and pattern history table
-
-int PHTSIZE = pow(HBSIZE,2)-1;
-int PHT[PHTSIZE]; 
-int HB[HBSIZE];
-
 
 //initialize History buffer to be all not taken
 for(int i =0; i < HBSIZE; i++) {
@@ -44,27 +41,35 @@ for(int i = 0; i < PHTSIZE; i++ ) {
 
 void train_predictor (unsigned int pc, bool outcome)
 {
-	//still need to a find a way to shift the outcome into the rightmost part of the HB
-	PHT[HB[index]];
+	//cant xor an unsigned array of size 256 with a pc need to fix this issue
 	index = pc ^ HB;
+	
 
-
+	//update HB when new outcome is observed
 	//take care of saturing counters
 	if(PHT[index] == 3 && outcome == 1) {
+		HB = HB << 1;
+		HB[HBSIZE] = 1;
 		return;
+
 	}
 
 	else if(PHT[index] == 0 && outcome == 0) {
+		HB = HB << 1;
+		HB[HBSIZE] = 0;
 		return;
 	}
 
 
 	else if(outcome == 1) {
 		PHT[index]++;
+		HB = HB << 1;
+		HB[HBSIZE] = 1;
 		return;
 	}
 
 	else if(outcome == 0) {
+		HB = HB << 1;
 		PHT[index]--;
 		return;
 	}
