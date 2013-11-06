@@ -1,14 +1,14 @@
 #ifndef PREDICTOR_H
 #define PREDICTOR_H
 
-#include <math.h>
+#define HBSIZE 32
 
+//size of Pattern history table
+#define PHTSIZE 512 //2^HBSIZE - 1
 
-#define HBSIZE 256
-#define PHTSIZE 65536 //2^HBSIZE - 1
+extern unsigned int PHT[PHTSIZE]; 
 
-int PHT[PHTSIZE]; 
-int HB[HBSIZE];
+extern unsigned int HB;
 
 /*
   Define all your tables and their sizes here.
