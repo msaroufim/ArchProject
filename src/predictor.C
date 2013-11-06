@@ -1,14 +1,16 @@
 #include <math.h>
 
 //size of history buffer
-#define HBSIZE 32
+// #define HBSIZE 32
 
 //size of Pattern history table
-#define PHTSIZE 4294967295 //2^HBSIZE - 1
+// #define PHTSIZE 4294967295 //2^HBSIZE - 1
+#define PHTSIZE 512
 
-extern unsigned int PHT[PHTSIZE]; 
-
-extern unsigned int HB;
+// extern unsigned int PHT[PHTSIZE]; 
+unsigned int PHT[PHTSIZE];
+// extern unsigned int HB;
+unsigned int HB;
 
 void init_predictor () 
 
@@ -24,27 +26,31 @@ for(int i = 0; i < PHTSIZE; i++ ) {
 
 }
 
-
- bool make_prediction (unsigned int pc)
-{
-  /*
-  0 strongly not taken
-  1 weakly not taken
-  2 weakly taken
-  3 strongly taken
-  */
-  if (PHT[pc] > 1) {
-  	return true;
-  }
-  else {
-  	return false;
-  }
+bool make_prediction(unsigned int pc) {
+	return false; 
 }
+// bool make_prediction (unsigned int pc)
+//{
+//  /*
+//  0 strongly not taken
+//  1 weakly not taken
+//  2 weakly taken
+//  3 strongly taken
+//  */
+//  if (PHT[pc] > 1) {
+//  	return true;
+//  }
+//  else {
+//  	return false;
+//  }
+//}
 
 void train_predictor (unsigned int pc, bool outcome)
 {
 	//cant xor an unsigned array of size 256 with a pc need to fix this issue
+	unsigned int mask = 0x10; 
 	unsigned int index = pc ^ HB;
+
 	
 
 	//update HB when new outcome is observed
