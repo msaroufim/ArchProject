@@ -1,5 +1,5 @@
 CC=g++
-OPTS=-g
+OPTS=-g 
 
 all: main.o traceread.o predictor.o
 	$(CC) $(OPTS) -lm -o predictor main.o traceread.o predictor.o

@@ -1,7 +1,6 @@
 #ifndef PREDICTOR_H
 #define PREDICTOR_H
 
-#define HBSIZE 32
 
 //size of Pattern history table
 #define PHTSIZE 512 //2^HBSIZE - 1

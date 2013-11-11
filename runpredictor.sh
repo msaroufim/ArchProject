@@ -5,6 +5,8 @@ echo "Compiling source ..."
 
 cd src
 
+make clean
+
 make
 
 cd ..
