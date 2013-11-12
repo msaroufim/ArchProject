@@ -5,7 +5,7 @@
 
 //size of Pattern history table
 // #define PHTSIZE 4294967295 //2^HBSIZE - 1
-#define PHTSIZE 32
+#define PHTSIZE 8191
 
 // extern unsigned int PHT[PHTSIZE]; 
 unsigned int PHT[PHTSIZE];
@@ -34,7 +34,7 @@ for(int i = 0; i < PHTSIZE; i++ ) {
   2 weakly taken
   3 strongly taken
   */
-  unsigned int mask = 5;
+  unsigned int mask = 8191;
   pc = pc & mask;
 
   if (PHT[pc] > 1) {
@@ -50,7 +50,7 @@ void train_predictor (unsigned int pc, bool outcome)
 {
 	//use mask = 31 for final submission
 	//cant xor an unsigned array of size 256 with a pc need to fix this issue
-	unsigned int mask = 5; 
+	unsigned int mask = 8191; 
 	unsigned int index = pc ^ HB;
 	index = index & mask;
 	

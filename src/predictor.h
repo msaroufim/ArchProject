@@ -3,7 +3,7 @@
 
 
 //size of Pattern history table
-#define PHTSIZE 512 //2^HBSIZE - 1
+#define PHTSIZE 81910 //2^HBSIZE - 1
 
 extern unsigned int PHT[PHTSIZE]; 
 
